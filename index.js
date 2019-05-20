@@ -24,9 +24,11 @@ app.get("/api/courses", (req, res) => {
 });
 
 app.post('/api/courses', (req, res) => {
+    const courseName = req.body.name;
+    if (!courseName || courseName.length < 3) { res.status(400).send("")}
     const course = {
         id: courses.length + 1,
-        name: req.body.name,
+        name: courseName,
     };
     courses.push(course);
     res.send(course);
